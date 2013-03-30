@@ -1,5 +1,7 @@
 class ManagementController < ApplicationController
 
+  before_filter :authenticate_staff!
+
   layout "management"
 
   def unassigned

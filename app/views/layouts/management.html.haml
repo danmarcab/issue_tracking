@@ -22,16 +22,17 @@
         = flash[:notice]
 
     .container-fluid
-      .btn-group
-        = link_to "Unassigned", staff_root_path, :class => "btn"
-        = link_to "Opened", open_tickets_path, :class => "btn"
-        = link_to "On Hold", on_hold_tickets_path, :class => "btn"
-        = link_to "Closed", closed_tickets_path, :class => "btn"
+      - if staff_signed_in?
+        .btn-group
+          = link_to "Unassigned", staff_root_path, :class => "btn"
+          = link_to "Opened", open_tickets_path, :class => "btn"
+          = link_to "On Hold", on_hold_tickets_path, :class => "btn"
+          = link_to "Closed", closed_tickets_path, :class => "btn"
 
-      = form_tag search_tickets_path, :class => "form-search .pull-right" do
-        .input-append
-          = text_field :search, :string, :class => "search-query"
-          %button.btn Search
+        = form_tag search_tickets_path, :class => "form-search .pull-right" do
+          .input-append
+            = text_field :search, :string, :class => "search-query"
+            %button.btn Search
 
       = yield
 
