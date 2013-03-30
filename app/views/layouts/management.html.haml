@@ -1,0 +1,40 @@
+!!!
+%html{ :xmlns => "http://www.w3.org/1999/xhtml", :lang => "en", "xml:lang" => "en"}
+  %head
+    %title Issue Tracking
+    %meta{"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8"}
+    = stylesheet_link_tag "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    #header.navbar
+      .navbar-inner
+        .container-fluid
+          = link_to "Issue Tracking Management", root_path, :class => "brand"
+          .nav-collapse.collapse
+            = render :partial => "home/login"
+
+    - if !flash[:error].blank?
+      .alert.alert-error
+        = flash[:error]
+    - if !flash[:notice].blank?
+      .alert.alert-info
+        = flash[:notice]
+
+    .container-fluid
+      .btn-group
+        = link_to "Unassigned", staff_root_path, :class => "btn"
+        = link_to "Opened", open_tickets_path, :class => "btn"
+        = link_to "On Hold", on_hold_tickets_path, :class => "btn"
+        = link_to "Closed", closed_tickets_path, :class => "btn"
+
+      = form_tag search_tickets_path, :class => "form-search .pull-right" do
+        .input-append
+          = text_field :search, :string, :class => "search-query"
+          %button.btn Search
+
+      = yield
+
+    %hr
+    %footer
+      %p &copy; Issue Tracking - Daniel Marin - 2013

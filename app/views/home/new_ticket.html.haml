@@ -1,0 +1,16 @@
+= form_tag create_ticket_path do
+  %h3 Send an Issue
+
+  %label Name*
+  = text_field :ticket, :customer_name, :required => true
+  %label Email*
+  = email_field :ticket, :customer_email, :required => true
+  %label Department*
+  = select :ticket, :department_id, Department.all.collect{ |d| [d.name, d.id] }
+  %label Subject*
+  = text_field :ticket, :subject, :required => true, :class => "input-block-level"
+  %label Body*
+  = text_area :ticket, :body, :required => true, :class => "input-block-level", :rows => 8
+
+  %button.btn.btn-primary
+    Send

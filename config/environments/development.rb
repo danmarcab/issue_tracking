@@ -34,4 +34,17 @@ IssueTracking::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+
+  # deleted my account info for github, you must complete with yours
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+      :address              => "smtp.gmail.com",
+      :port                 => 587,
+      :domain               => '',
+      :user_name            => '',
+      :password             => '',
+      :authentication       => 'plain',
+      :enable_starttls_auto => true  }
+
 end

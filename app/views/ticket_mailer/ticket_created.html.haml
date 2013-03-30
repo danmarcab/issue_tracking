@@ -1,0 +1,7 @@
+%h2 Your Issue has been registered
+%p
+  You issue has the reference: #{@ticket.ref}. We have received your data and will provide a reply
+  as soon as possible. You can view the status of your issue in the following link:
+  = link_to "Here", ticket_history_url(:ref => @ticket.ref, :host => "0.0.0.0", :port => 3000)
+
+%p Thank you for using our online support system

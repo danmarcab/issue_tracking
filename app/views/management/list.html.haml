@@ -1,0 +1,22 @@
+%h2
+  = @title
+
+%table.table
+  %thead
+    %tr
+      %td Reference
+      %td Customer
+      %td Subject
+      %td Date
+      %td Status
+
+  - @tickets.each do |ticket|
+    %tr
+      %td #{ticket.ref}
+      %td #{ticket.customer_name}
+      %td #{ticket.subject}
+      %td #{ticket.created_at}
+      %td #{ticket.status.name}
+      %td
+        = link_to "View", view_ticket_path(:id => ticket.id), :class => "btn"
+

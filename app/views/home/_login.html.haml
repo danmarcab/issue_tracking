@@ -1,0 +1,7 @@
+%span.navbar-text.pull-right
+  - if staff_signed_in?
+    = link_to "management", staff_root_path, :method => :delete
+    = current_staff.email
+    = link_to "logout", destroy_staff_session_path, :method => :delete
+  - else
+    = link_to "Staff login", staff_session_path

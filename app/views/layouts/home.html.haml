@@ -1,0 +1,29 @@
+!!!
+%html{ :xmlns => "http://www.w3.org/1999/xhtml", :lang => "en", "xml:lang" => "en"}
+  %head
+    %title Issue Tracking
+    %meta{"http-equiv" => "Content-Type", :content => "text/html; charset=utf-8"}
+    = stylesheet_link_tag "application", :media => "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    #header.navbar.navbar-inverse
+      .navbar-inner
+        .container-fluid
+          = link_to "Issue Tracking", root_path, :class => "brand"
+          .nav-collapse.collapse
+            = render :partial => "home/login"
+
+    - if !flash[:error].blank?
+      .alert.alert-error
+        = flash[:error]
+    - if !flash[:notice].blank?
+      .alert.alert-info
+        = flash[:notice]
+
+    .container-fluid
+      = yield
+
+    %hr
+    %footer
+      %p &copy; Issue Tracking - Daniel Marin - 2013

@@ -1,0 +1,12 @@
+%h2 Your Issue has been updated
+%p
+  You issue with reference: #{@ticket.ref} has been updated.
+
+  %p Staff Member: #{@reply.staff.email}
+  %p Status changed to: #{@reply.status.name}
+  %p Response: #{@reply.response}
+
+  You can view the status of your issue in the following link:
+  = link_to "Here", ticket_history_url(:ref => @ticket.ref, :host => "0.0.0.0", :port => 3000)
+
+%p Thank you for using our online support system

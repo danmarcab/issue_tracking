@@ -1,0 +1,18 @@
+%h3 Ticket #{@ticket.ref} history
+
+%label Name: #{@ticket.customer_name}
+%label Email: #{@ticket.customer_email}
+%label Department: #{@ticket.department.name}
+%label Subject: #{@ticket.subject}
+%label Body: #{@ticket.body}
+
+- @ticket.replies.each do |reply|
+  %hr
+  %h4 Response #{reply.created_at}
+  %label Staff Member: #{reply.staff.email}
+  %label
+    Status changed to:
+    .label #{reply.status.name}
+  %label Response: #{reply.response}
+
+%hr

@@ -1,4 +1,6 @@
 IssueTracking::Application.routes.draw do
+  devise_for :staffs
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -9,6 +11,21 @@ IssueTracking::Application.routes.draw do
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
+
+  match "home/new_ticket" => "home#new_ticket", :as => :new_ticket
+  match "home/create_ticket" => "home#create_ticket", :as => :create_ticket
+  match "home/ticket_history" => "home#ticket_history", :as => :ticket_history
+
+  match "management/unassigned" => "management#unassigned", :as => :staff_root
+  match "management/opened" => "management#opened", :as => :open_tickets
+  match "management/on_hold" => "management#on_hold", :as => :on_hold_tickets
+  match "management/closed" => "management#closed", :as => :closed_tickets
+
+  match "management/view_ticket" => "management#view_ticket", :as => :view_ticket
+  match "management/reply_ticket" => "management#reply_ticket", :as => :reply_ticket
+  match "management/search_tickets" => "management#search_tickets", :as => :search_tickets
+
+
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
@@ -48,7 +65,7 @@ IssueTracking::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'home#index'
 
   # See how all your routes lay out with "rake routes"
 

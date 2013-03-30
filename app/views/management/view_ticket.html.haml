@@ -1,0 +1,17 @@
+= render :template => "/home/ticket_history"
+
+- if @ticket.status.category != "Closed"
+  .well
+    = form_tag reply_ticket_path do
+
+      %h3 Reply Ticket
+      = hidden_field :reply, :ticket_id, :value => @ticket.id
+      %label Owner
+      = select :reply, :staff_id, Staff.all.collect{ |d| [d.email, d.id] }, {:selected => current_staff.id}
+      %label Status
+      = select :reply, :status_id, Status.all.collect{ |d| [d.name, d.id] }, {:selected => @ticket.status.id}
+      %label Body
+      = text_area :reply, :response, :required => true, :class => "input-block-level", :rows => 8
+
+      %button.btn.btn-primary
+        Send
